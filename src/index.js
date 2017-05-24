@@ -16,4 +16,4 @@ class GameDev {
 
 const gamedev = new GameDev();
 
-export default gamedev;
+module.exports = gamedev;

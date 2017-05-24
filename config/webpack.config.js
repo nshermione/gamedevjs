@@ -7,6 +7,8 @@ module.exports = {
   },
   output: {
     path: helpers.root('dist'),
+    library: "gamedevjs",
+    libraryTarget: 'umd',
     filename: '[name].js'
   },
   resolve: {
