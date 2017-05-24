@@ -27,3 +27,6 @@ scheduler.start();
 ## License
 
 ISC © [Thinh Tran](https://www.facebook.com/ththinh)
+
+
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A889ABEB4LBYE)
