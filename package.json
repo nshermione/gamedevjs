@@ -2,18 +2,19 @@
   "name": "gamedevjs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "directories": {
-    "src": "src",
-    "test": "test"
-  },
+  "main": "src/index.js",
   "scripts": {
     "test": "babel-node spec/run.js",
     "build": "./node_modules/.bin/webpack --config ./config/webpack.config.js",
     "build:min": "./node_modules/.bin/webpack --config ./config/webpack.prod.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "gamedev",
+    "gametool",
+    "gamedata",
+    "gamemanager"
+  ],
+  "author": "Thinh Tran <ns.hermione@gmail.com> (https://www.facebook.com/ththinh)",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.24.1",
