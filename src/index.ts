@@ -9,6 +9,4 @@ export class GameDev {
 }
 
 
-const gamedev = new GameDev();
-
-export default gamedev;
+export const gamedev = new GameDev();
