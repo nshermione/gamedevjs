@@ -3,7 +3,7 @@ var helpers = require('./helpers');
 
 module.exports = {
   entry: {
-    gamedev: helpers.root("src/index.js")
+    gamedev: helpers.root("src/index.ts")
   },
   output: {
     path: helpers.root('dist'),
@@ -12,14 +12,15 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: [".js"],
+    extensions: [".ts", ".js"],
     alias: {
       // 'p2': helpers.root('node_modules/phaser/build/custom/p2'),
     }
   },
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+      { test: /\.ts/, exclude: /node_modules/, loader: "ts-loader" },
     ]
   }
 };

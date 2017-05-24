@@ -1,7 +1,8 @@
 {
   "name": "gamedevjs",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "",
+  "types": "dist/src/index.d.ts",
   "main": "dist/gamedev.js",
   "scripts": {
     "test": "babel-node spec/run.js",
@@ -17,17 +18,17 @@
   "author": "Thinh Tran <ns.hermione@gmail.com> (https://www.facebook.com/ththinh)",
   "license": "ISC",
   "devDependencies": {
+    "@types/jasmine": "^2.5.47",
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.5.1",
-    "jasmine": "^2.6.0",
-    "webpack": "^2.6.0",
-    "webpack-merge": "^4.1.0",
-    "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
-    "@types/jasmine": "^2.5.47"
+    "jasmine": "^2.6.0",
+    "ts-loader": "^2.1.0",
+    "typescript": "^2.3.3",
+    "webpack": "^2.6.0",
+    "webpack-merge": "^4.1.0"
   },
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }

@@ -5,14 +5,15 @@
 /**
  * Scheduler helps to call function with specific time and flexible configuration.
  */
-class Scheduler {
+export class Scheduler {
+  steps = [];
+  startTime = 0;
+  isRunning = false;
+  timeouts = [];
+  delay = 0;
 
   constructor() {
-    this.steps = [];
-    this.startTime = 0;
-    this.isRunning = false;
-    this.timeouts = [];
-    this.delay = 0;
+
   }
 
   /**

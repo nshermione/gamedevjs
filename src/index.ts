@@ -1,19 +1,14 @@
-/**
- * Created by thinhtran on 5/24/17.
- */
-
-
 import {SchedulerStatic} from "./scheduler";
 
+export class GameDev {
+  scheduler: SchedulerStatic;
 
-class GameDev {
   constructor() {
     this.scheduler = new SchedulerStatic();
-
   }
 }
 
 
 const gamedev = new GameDev();
 
-module.exports = gamedev;
+export default gamedev;
