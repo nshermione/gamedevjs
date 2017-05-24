@@ -6,7 +6,7 @@
   "main": "dist/gamedev.js",
   "scripts": {
     "test": "karma start my.conf.js --single-run --browsers PhantomJS",
-    "prepublish": "./node_modules/.bin/webpack --config ./config/webpack.config.js && ./node_modules/.bin/webpack --config ./config/webpack.lib.js",
+    "prepublish": "npm run build",
     "build": "./node_modules/.bin/webpack --config ./config/webpack.config.js"
   },
   "keywords": [
