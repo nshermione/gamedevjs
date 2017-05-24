@@ -3,12 +3,12 @@
  */
 
 
-import {Scheduler} from "./scheduler";
+import {SchedulerStatic} from "./scheduler";
 
 
 class GameDev {
   constructor() {
-    this.scheduler = new Scheduler();
+    this.scheduler = new SchedulerStatic();
 
   }
 }
