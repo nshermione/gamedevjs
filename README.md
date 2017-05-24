@@ -11,8 +11,17 @@ $ npm install --save gamedevjs
 ## Usage
 
 ```js
-var gamedevjs = require('gamedevjs');
-gamedevjs();
+var gamedev = require("gamedevjs").gamedev;
+
+var scheduler = gamedev.scheduler.config([
+    {at: 200, run: function() {console.log("Hello 200ms")} },
+    {at: 1300, run: function() {console.log("Hello 1300ms")} },
+    {at: 5000, run: function() {console.log("Hello 5000ms")} },
+]);
+
+scheduler.start();
+
+
 ```
 
 ## License
