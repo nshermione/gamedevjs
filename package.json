@@ -1,6 +1,6 @@
 {
   "name": "gamedevjs",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "",
   "types": "dist/src/index.d.ts",
   "main": "dist/gamedev.js",
@@ -18,7 +18,7 @@
   "author": "Thinh Tran <ns.hermione@gmail.com> (https://www.facebook.com/ththinh)",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com:nshermione/gamedevjs.git"
+    "url": "https://github.com/nshermione/gamedevjs"
   },
   "license": "ISC",
   "devDependencies": {
