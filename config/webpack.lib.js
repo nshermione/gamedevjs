@@ -8,7 +8,6 @@ const commonConfig = require("./webpack.config.js");
 
 module.exports = webpackMerge(commonConfig, {
   output: {
-    path: helpers.root('lib'),
     filename: '[name].min.js'
   },
   plugins: [

@@ -1,11 +1,11 @@
 {
   "name": "gamedevjs",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/gamedev.js",
   "scripts": {
     "test": "babel-node spec/run.js",
-    "prepublish": "./node_modules/.bin/webpack --config ./config/webpack.lib.js",
+    "prepublish": "./node_modules/.bin/webpack --config ./config/webpack.config.js && ./node_modules/.bin/webpack --config ./config/webpack.lib.js",
     "build": "./node_modules/.bin/webpack --config ./config/webpack.config.js"
   },
   "keywords": [
