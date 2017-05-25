@@ -10,6 +10,10 @@ $ npm install --save gamedevjs
 
 ## Usage
 
+### Scheduler
+
+#### Creation
+Schedule tasks at specific times
 ```js
 var gamedev = require("gamedevjs").gamedev;
 
@@ -20,8 +24,49 @@ var scheduler = gamedev.scheduler.config([
 ]);
 
 scheduler.start();
+```
 
+Schedule sequence tasks
+```js
+var gamedev = require("gamedevjs").gamedev;
 
+var scheduler = gamedev.scheduler.sequence([
+    {duration: 1100, run: function() {console.log("Hello 200ms")} },
+    {duration: 3700, run: function() {console.log("Hello 1300ms")} },
+    {duration: 100, run: function() {console.log("Hello 5000ms")} },
+]);
+
+// start scheduler with delay time
+scheduler.start(200);
+```
+
+#### Manipulation
+Push task with specific time
+```js
+...
+// push and schedule addional task
+scheduler.pushStep({
+    at: 4000,
+    run: function() {
+        console.log("Hello 4000ms");
+    }
+})
+
+// or we can push task when scheduler is running
+// and make sure scheduler have not reached 4000ms (3990ms for sure)
+setTimeout(function() {
+    scheduler.pushStep({
+        at: 4000,
+        run: function() {
+            console.log("Hello 4000ms");
+        }
+    })
+}, 3000);
+```
+
+Stop scheduler will terminate all running tasks
+```
+scheduler.stop();
 ```
 
 ## License

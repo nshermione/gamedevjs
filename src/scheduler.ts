@@ -20,7 +20,7 @@ export class Scheduler {
    *
    * @param delay milliseconds
    */
-  start(delay = 0) {
+  public start(delay = 0) {
     this.delay = delay !== undefined ? delay : this.delay;
     this.isRunning = true;
     for (let step of this.steps) {
@@ -38,7 +38,7 @@ export class Scheduler {
   /**
    * Stop all scheduled steps
    */
-  stop() {
+  public stop() {
     this.isRunning = false;
     for (let timeout of this.timeouts) {
       clearTimeout(timeout);
@@ -52,13 +52,13 @@ export class Scheduler {
    * @param at - starting time (make sure: at - elapsed >= 10ms, which elapsed is elapsed time from starting)
    * @param run - executive function
    */
-  pushStep(at, run) {
-    let step = {at, run}
+  public pushStep(at, run): void {
+    let step = {at, run};
     this.steps.push(step);
     this.scheduleNewStep(step);
   }
 
-  scheduleNewStep(step) {
+  private scheduleNewStep(step): void {
     let elapsed = Date.now() - this.startTime;
     if (step.at > elapsed) {
       let timeout = setTimeout(step.run, step.at - elapsed);
@@ -66,7 +66,7 @@ export class Scheduler {
     }
   }
 
-  pushSteps(steps) {
+  public pushSteps(steps): void {
     if (steps && steps.length) {
       this.steps = this.steps.concat(steps);
       for (let step of steps) {
@@ -75,7 +75,7 @@ export class Scheduler {
     }
   }
 
-  pushDurationSteps(durationSteps) {
+  public pushDurationSteps(durationSteps): void {
     let totalTime = 0;
     for (let durationStep of durationSteps) {
       let step = {at: totalTime, run: durationStep.run}
@@ -93,7 +93,7 @@ export class SchedulerStatic {
    * @param steps - Syntax: [{at: <time at milliseconds>, run: <executive function>}, ...]
    * @returns Scheduler
    */
-  config(steps) {
+  public config(steps): Scheduler {
     let scheduler = new Scheduler();
     scheduler.pushSteps(steps);
     return scheduler;
@@ -104,7 +104,7 @@ export class SchedulerStatic {
    * @param durationSteps - Syntax: [{duration: <time at milliseconds>, run: <executive function>}, ...]
    * @returns {Scheduler}
    */
-  sequence(durationSteps) {
+  public sequence(durationSteps): Scheduler {
     let scheduler = new Scheduler();
     scheduler.pushDurationSteps(durationSteps);
     return scheduler;
