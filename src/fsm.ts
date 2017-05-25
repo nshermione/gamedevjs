@@ -19,7 +19,6 @@ export interface IStateOption {
 
 export class FiniteStateMachine {
   events: any = {};
-  states: any = {};
   current: any = "";
 
   constructor() {
@@ -33,12 +32,6 @@ export class FiniteStateMachine {
   private runEvent(prefix, name, done) {
     if (this.events[`${prefix}${name}`] && this.events[`${prefix}${name}`].call) {
       return this.events[`${prefix}${name}`](done);
-    }
-  }
-
-  private runState(prefix, name, done) {
-    if (this.states[`${prefix}${name}`] && this.states[`${prefix}${name}`].call) {
-      return this.states[`${prefix}${name}`](done);
     }
   }
 
@@ -78,15 +71,15 @@ export class FiniteStateMachine {
         this.events[name] = () => {
           if (this.current === event.from || event.from.indexOf(this.current) >= 0) {
             this.processEvent([
-              (done)=>{return this.runEvent("before", "all", done)},
+              (done)=>{return this.runEvent("before", "any", done)},
               (done)=>{return this.runEvent("before", name, done)},
-              (done)=>{return this.runState("leave", this.current, done)},
-              (done)=>{return this.runState("leave", "all", done)},
+              (done)=>{return this.runEvent("leave", this.current, done)},
+              (done)=>{return this.runEvent("leave", "any", done)},
               (done)=>{this.current = event.to; done();},
-              (done)=>{return this.runState("enter", "all", done)},
-              (done)=>{return this.runState("enter", this.current, done)},
+              (done)=>{return this.runEvent("enter", "any", done)},
+              (done)=>{return this.runEvent("enter", this.current, done)},
               (done)=>{return this.runEvent("after", name, done)},
-              (done)=>{return this.runEvent("after", "all", done)},
+              (done)=>{return this.runEvent("after", "any", done)},
             ]);
           }
         };

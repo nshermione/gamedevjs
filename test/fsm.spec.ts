@@ -12,7 +12,6 @@ describe("gamedev.fsm", function () {
         movefast: {from: ["stand", "walk"], to: "run"},
         stop: {from: ["walk", "run"], to: "stand"},
       }
-
     });
   }
 
