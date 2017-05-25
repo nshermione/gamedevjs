@@ -9,6 +9,7 @@
       - [Creation](#creation)
         * [Schedule tasks at specific times](#schedule-tasks-at-specific-times)
         * [Schedule sequence tasks](#schedule-sequence-tasks)
+        * [Repeat](#repeat)
       - [Manipulation](#manipulation)
         * [Push task at specific time](#push-task-at-specific-time)
         * [Stop scheduler will terminate all running tasks](#stop-scheduler-will-terminate-all-running-tasks)
@@ -63,6 +64,22 @@ var scheduler = gamedev.scheduler.sequence([
 scheduler.start(200);
 ```
 
+
+<br />
+
+##### Repeat
+```js
+// start scheduler with no delay time, repeat 3 times
+scheduler.start(0, 3);
+
+// start scheduler with no delay time, repeat forever
+scheduler.start(0, -1);
+
+// start scheduler with 200ms delay time, repeat 2 times
+// and delay 200ms between each scheduled times
+scheduler.start(200, 2);
+
+```
 
 <br />
 

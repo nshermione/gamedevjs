@@ -6,10 +6,13 @@ import {gamedev} from "../src/index";
 
 describe("gamedev.scheduler", function () {
   let value = 5;
+  let sequenceValue = 5;
+  let repeatValue = 5;
   let scheduler;
   let sequence;
+  let repeat;
 
-  beforeEach(function () {
+  let initSchedule = function () {
     scheduler = gamedev.scheduler.config([
       {
         at: 100, run: () => {
@@ -27,27 +30,54 @@ describe("gamedev.scheduler", function () {
       }
       },
     ]);
+  };
 
+  let initSequence = function () {
     sequence = gamedev.scheduler.sequence([
       {
         duration: 900, run: () => {
-        value = 6
+        sequenceValue = 6
       }
       },
       {
         duration: 1000, run: () => {
-        value = 7
+        sequenceValue = 7
       }
       },
       {
         duration: 0, run: () => {
-        value = 8
+        sequenceValue = 8
       }
       },
-    ])
+    ]);
+  };
+
+  let initRepeat = function () {
+    repeat = gamedev.scheduler.config([
+      {
+        at: 100, run: () => {
+        repeatValue = 6
+      }
+      },
+      {
+        at: 1000, run: () => {
+        repeatValue = 7
+      }
+      },
+      {
+        at: 2000, run: () => {
+        repeatValue = 8
+      }
+      },
+    ]);
+  };
+
+  beforeEach(function () {
   });
 
   it("config(steps)", function (done) {
+    initSchedule();
+
     scheduler.start();
 
     expect(scheduler.steps.length).toBe(3);
@@ -68,13 +98,14 @@ describe("gamedev.scheduler", function () {
   });
 
   it("pushStep", function (done) {
+    initSchedule();
     scheduler.start();
 
     setTimeout(() => {
       scheduler.pushStep(2100, () => {
         value = 9;
       })
-    }, 2090);
+    }, 2000);
 
     setTimeout(() => {
       expect(value).toBe(9);
@@ -83,19 +114,49 @@ describe("gamedev.scheduler", function () {
   });
 
   it("sequence(durationSteps)", function (done) {
+    initSequence();
+
     sequence.start(100);
 
     setTimeout(() => {
-      expect(value).toBe(6);
+      expect(sequenceValue).toBe(6);
     }, 900);
 
     setTimeout(() => {
-      expect(value).toBe(7);
+      expect(sequenceValue).toBe(7);
     }, 1100);
 
     setTimeout(() => {
-      expect(value).toBe(8);
+      expect(sequenceValue).toBe(8);
       done();
     }, 2001);
-  })
+  });
+
+  it("play(delay=0, repeat=2)", function (done) {
+    initRepeat();
+
+    repeat.start(200, 2);
+
+    setTimeout(() => {
+      expect(repeatValue).toBe(6);
+    }, 900 + 200);
+
+    setTimeout(() => {
+      expect(repeatValue).toBe(7);
+    }, 1100 + 200);
+
+    setTimeout(() => {
+      expect(repeatValue).toBe(8);
+    }, 2001 + 200);
+
+    setTimeout(() => {
+      expect(repeatValue).toBe(8);
+    }, 2099 + 200);
+
+    setTimeout(() => {
+      expect(repeatValue).toBe(6);
+      done();
+    }, 2110 + 200 + 200);
+
+  });
 });

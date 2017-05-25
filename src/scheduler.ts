@@ -6,11 +6,13 @@
  * Scheduler helps to call function with specific time and flexible configuration.
  */
 export class Scheduler {
+  endTime = 0;
   steps = [];
   startTime = 0;
   isRunning = false;
   timeouts = [];
   delay = 0;
+  repeat = 0;
 
   constructor() {
 
@@ -19,29 +21,52 @@ export class Scheduler {
   /**
    *
    * @param delay milliseconds
+   * @param repeat integer
    */
-  public start(delay = 0) {
+  public start(delay = 0, repeat = 0) {
+    this.stop();
     this.delay = delay !== undefined ? delay : this.delay;
+    this.repeat = repeat !== undefined ? repeat : this.repeat;
     this.isRunning = true;
+    this.endTime = 0;
     for (let step of this.steps) {
       let timeout = setTimeout(() => {
         if (this.isRunning) {
           step.run();
         }
       }, this.delay + step.at);
+
+      let duration = step.duration || 0;
+      this.endTime = Math.max(this.endTime, this.delay + step.at + duration);
       this.timeouts.push(timeout);
     }
 
+    this.scheduleEndStep();
+
     this.startTime = Date.now();
+  }
+
+  private scheduleEndStep() {
+    let timeout = setTimeout(() => {
+      this.repeat = this.repeat > 0 ? this.repeat - 1 : this.repeat;
+      if (this.repeat > 0 || this.repeat === -1) {
+        this.start();
+      } else {
+        this.stop();
+      }
+    }, this.endTime + 1);
+    this.timeouts.push(timeout);
   }
 
   /**
    * Stop all scheduled steps
    */
-  public stop() {
+  public stop(clean = true) {
     this.isRunning = false;
-    for (let timeout of this.timeouts) {
-      clearTimeout(timeout);
+    if (clean) {
+      for (let timeout of this.timeouts) {
+        clearTimeout(timeout);
+      }
     }
     this.timeouts = [];
     this.startTime = 0;
@@ -63,6 +88,17 @@ export class Scheduler {
     if (step.at > elapsed) {
       let timeout = setTimeout(step.run, step.at - elapsed);
       this.timeouts.push(timeout);
+
+      let duration = step.duration || 0;
+      let endTime = step.at - elapsed + duration;
+      if (step.at > this.endTime) {
+        if (this.timeouts.length > 1) {
+          let endtimeout = this.timeouts.slice(this.timeouts.length - 2, this.timeouts.length - 1)[0];
+          clearTimeout(endtimeout);
+        }
+        this.endTime = endTime;
+        this.scheduleEndStep();
+      }
     }
   }
 

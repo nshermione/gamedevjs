@@ -6,7 +6,7 @@ module.exports = function (config) {
       'test/**.spec.ts'
     ],
     preprocessors: {
-      'test/**.spec.ts': ['webpack', 'sourcemap'],
+      'test/gamedev.spec.ts': ['webpack', 'sourcemap'],
     },
     webpack: {
       resolve: {
@@ -17,7 +17,7 @@ module.exports = function (config) {
           {test: /\.ts/, loader: 'ts-loader'}
         ]
       },
-      devtool: 'inline-source-map',
+      devtool: 'source-map',
     },
     reporters: ['progress'],
     port: 9876,
