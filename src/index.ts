@@ -1,5 +1,5 @@
 import {SchedulerStatic} from "./scheduler";
-import {FiniteStateMachineStatic} from "./fsm";
+import {EventStatus, FiniteStateMachineStatic} from "./fsm";
 
 export class GameDev {
   scheduler: SchedulerStatic;
@@ -12,4 +12,8 @@ export class GameDev {
 }
 
 
-export const gamedev = new GameDev();
+const gamedev = new GameDev();
+export {
+  gamedev,
+  EventStatus
+}
