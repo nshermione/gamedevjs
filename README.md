@@ -10,7 +10,7 @@
         * [Schedule tasks at specific times](#schedule-tasks-at-specific-times)
         * [Schedule sequence tasks](#schedule-sequence-tasks)
       - [Manipulation](#manipulation)
-        * [Push task with specific time](#push-task-with-specific-time)
+        * [Push task at specific time](#push-task-at-specific-time)
         * [Stop scheduler will terminate all running tasks](#stop-scheduler-will-terminate-all-running-tasks)
   * [License](#license)
   * [Author](#author)
@@ -70,7 +70,7 @@ scheduler.start(200);
 
 <br />
 
-##### Push task with specific time
+##### Push task at specific time
 ```js
 ...
 // push and schedule addional task
@@ -82,7 +82,7 @@ scheduler.pushStep({
 })
 
 // or we can push task when scheduler is running
-// and make sure scheduler have not reached 4000ms (3990ms for sure)
+// and make sure scheduler has not reached new schedule time
 setTimeout(function() {
     scheduler.pushStep({
         at: 4000,
