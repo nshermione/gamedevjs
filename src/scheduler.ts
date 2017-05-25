@@ -2,6 +2,12 @@
  * Created by thinhtran on 5/24/17.
  */
 
+export interface IScheduleStep {
+  at?: number;
+  duration?: number;
+  run: Function;
+}
+
 /**
  * Scheduler helps to call function with specific time and flexible configuration.
  */
@@ -78,12 +84,12 @@ export class Scheduler {
    * @param run - executive function
    */
   public pushStep(at, run): void {
-    let step = {at, run};
+    let step: IScheduleStep = {at, run};
     this.steps.push(step);
     this.scheduleNewStep(step);
   }
 
-  private scheduleNewStep(step): void {
+  private scheduleNewStep(step: IScheduleStep): void {
     let elapsed = Date.now() - this.startTime;
     if (step.at > elapsed) {
       let timeout = setTimeout(step.run, step.at - elapsed);
@@ -102,7 +108,7 @@ export class Scheduler {
     }
   }
 
-  public pushSteps(steps): void {
+  public pushSteps(steps: Array<IScheduleStep>): void {
     if (steps && steps.length) {
       this.steps = this.steps.concat(steps);
       for (let step of steps) {
@@ -111,7 +117,7 @@ export class Scheduler {
     }
   }
 
-  public pushDurationSteps(durationSteps): void {
+  public pushDurationSteps(durationSteps: Array<IScheduleStep>): void {
     let totalTime = 0;
     for (let durationStep of durationSteps) {
       let step = {at: totalTime, run: durationStep.run}
@@ -129,7 +135,7 @@ export class SchedulerStatic {
    * @param steps - Syntax: [{at: <time at milliseconds>, run: <executive function>}, ...]
    * @returns Scheduler
    */
-  public config(steps): Scheduler {
+  public config(steps: Array<IScheduleStep>): Scheduler {
     let scheduler = new Scheduler();
     scheduler.pushSteps(steps);
     return scheduler;
@@ -140,7 +146,7 @@ export class SchedulerStatic {
    * @param durationSteps - Syntax: [{duration: <time at milliseconds>, run: <executive function>}, ...]
    * @returns {Scheduler}
    */
-  public sequence(durationSteps): Scheduler {
+  public sequence(durationSteps: Array<IScheduleStep>): Scheduler {
     let scheduler = new Scheduler();
     scheduler.pushDurationSteps(durationSteps);
     return scheduler;

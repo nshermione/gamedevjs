@@ -6,7 +6,7 @@ module.exports = function (config) {
       'test/**.spec.ts'
     ],
     preprocessors: {
-      'test/gamedev.spec.ts': ['webpack', 'sourcemap'],
+      'test/**.spec.ts': ['webpack', 'sourcemap'],
     },
     webpack: {
       resolve: {
