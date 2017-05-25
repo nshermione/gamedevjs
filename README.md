@@ -129,7 +129,7 @@ scheduler.stop();
 
 ## Finite State Machine
 
-Inspired by [javascript-state-machine](#https://github.com/jakesgordon/javascript-state-machine) (author: jakesgordon)
+Inspired by [javascript-state-machine](https://github.com/jakesgordon/javascript-state-machine) (author: jakesgordon)
 
 <br />
 
