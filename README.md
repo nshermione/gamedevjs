@@ -2,18 +2,38 @@
 
 > game development toolkit
 
-## Installation
+# Table of contents
+- [Installation](#installation)
+- [Usage](#usage)
+    + [Scheduler](#scheduler)
+      - [Creation](#creation)
+        * [Schedule tasks at specific times](#schedule-tasks-at-specific-times)
+        * [Schedule sequence tasks](#schedule-sequence-tasks)
+      - [Manipulation](#manipulation)
+        * [Push task with specific time](#push-task-with-specific-time)
+        * [Stop scheduler will terminate all running tasks](#stop-scheduler-will-terminate-all-running-tasks)
+  * [License](#license)
+  * [Author](#author)
+  * [Donation](#donation)
+
+# Installation
 
 ```sh
 $ npm install --save gamedevjs
 ```
 
-## Usage
+# Usage
 
 ### Scheduler
 
+<br />
+
 #### Creation
-Schedule tasks at specific times
+
+
+<br />
+
+##### Schedule tasks at specific times
 ```js
 var gamedev = require("gamedevjs").gamedev;
 
@@ -26,7 +46,9 @@ var scheduler = gamedev.scheduler.config([
 scheduler.start();
 ```
 
-Schedule sequence tasks
+<br />
+
+##### Schedule sequence tasks
 ```js
 var gamedev = require("gamedevjs").gamedev;
 
@@ -40,8 +62,15 @@ var scheduler = gamedev.scheduler.sequence([
 scheduler.start(200);
 ```
 
+
+<br />
+
 #### Manipulation
-Push task with specific time
+
+
+<br />
+
+##### Push task with specific time
 ```js
 ...
 // push and schedule addional task
@@ -64,14 +93,20 @@ setTimeout(function() {
 }, 3000);
 ```
 
-Stop scheduler will terminate all running tasks
-```
+<br />
+
+##### Stop scheduler will terminate all running tasks
+```js
 scheduler.stop();
 ```
 
 ## License
 
-ISC © [Thinh Tran](https://www.facebook.com/ththinh)
+ISC ©
 
+## Author
+[Thinh Tran](https://www.facebook.com/ththinh)
+
+## Donation
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A889ABEB4LBYE)
