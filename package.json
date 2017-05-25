@@ -1,6 +1,6 @@
 {
   "name": "gamedevjs",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "",
   "types": "dist/src/index.d.ts",
   "main": "dist/gamedev.js",

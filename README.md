@@ -12,9 +12,10 @@
       - [Manipulation](#manipulation)
         * [Push task at specific time](#push-task-at-specific-time)
         * [Stop scheduler will terminate all running tasks](#stop-scheduler-will-terminate-all-running-tasks)
-  * [License](#license)
-  * [Author](#author)
-  * [Donation](#donation)
+- [License](#license)
+- [Author](#author)
+- [Donation](#donation)
+
 
 # Installation
 
@@ -100,13 +101,13 @@ setTimeout(function() {
 scheduler.stop();
 ```
 
-## License
+# License
 
 ISC ©
 
-## Author
+# Author
 [Thinh Tran](https://www.facebook.com/ththinh)
 
-## Donation
+# Donation
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A889ABEB4LBYE)
