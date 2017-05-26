@@ -5,12 +5,13 @@
 A collection of common components which are widely used in game development:
 - Scheduler
 - Finite State Machine
+- Object Pool
 - Event Manager
 
 (other components will be published and documented soon)
 
 
-*This project is envolving and need your feedback, please create [Issue](https://github.com/nshermione/gamedevjs/issues)*
+*This project is evolving and need your feedback, please create [Issue](https://github.com/nshermione/gamedevjs/issues)*
 
 # Table of contents
 - [Installation](#installation)
@@ -285,21 +286,21 @@ Predefine a list of items for object pool.
 ```js
 var gamedev = require("gamedevjs").gamedev;
 
-var pool = gamedev.pool.config([
+var pool = gamedev.pool.config({
     items: [
         {point: 0}
     ]
-]);
+});
 ```
 
 #### Sample Item
 ```js
 ...
 
-var pool = gamedev.pool.config([
+var pool = gamedev.pool.config({
     sampleItem: {point: 2}
     sampleCount: 2
-]);
+});
 ```
 
 ### Combine
@@ -309,30 +310,25 @@ Predefined items are added to the pool first, then sample items will be added la
 ```js
 var gamedev = require("gamedevjs").gamedev;
 
-var pool = gamedev.pool.config([
+var pool = gamedev.pool.config({
     items: [
         {point: 0}
     ],
     sampleItem: {point: 2}
     sampleCount: 2
-]);
+});
 ```
 
 ### Manipulation
 
-#### Clear
-Clear all items
-```js
-...
-pool.clear();
-```
-
 #### Get
 ```js
 ...
-pool.clear();
 
-// pool is empty now so it will clone sampleItem
+// get available item
+item = pool.getItem();
+
+// if pool is empty, it will clone sampleItem
 // if sampleItem is undefined, item2 is undefined as well
 item2 = pool.getItem();
 ```
@@ -351,6 +347,13 @@ pool.returnItem(item);
 ...
 // push item to the pool and trigger onpush event
 pool.pushItem(item);
+```
+
+#### Clear
+Clear all items
+```js
+...
+pool.clear();
 ```
 
 ### Events
