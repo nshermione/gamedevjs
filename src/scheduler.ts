@@ -99,7 +99,7 @@ export class Scheduler {
       let endTime = step.at - elapsed + duration;
       if (step.at > this.endTime) {
         if (this.timeouts.length > 1) {
-          let endtimeout = this.timeouts.slice(this.timeouts.length - 2, this.timeouts.length - 1)[0];
+          let endtimeout = this.timeouts.splice(this.timeouts.length - 2, 1)[0];
           clearTimeout(endtimeout);
         }
         this.endTime = endTime;

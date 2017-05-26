@@ -5,6 +5,7 @@
   "types": "dist/src/index.d.ts",
   "main": "dist/gamedev.js",
   "scripts": {
+    "localtest": "karma start my.conf.js",
     "test": "karma start my.conf.js --single-run --browsers PhantomJS",
     "prepublish": "npm run build",
     "build": "./node_modules/.bin/webpack --config ./config/webpack.config.js"
@@ -28,8 +29,7 @@
     "karma-chrome-launcher": "^2.1.1",
     "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.4",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^2.0.3",
+    "karma-typescript": "^3.0.2",
     "ts-loader": "^2.1.0",
     "typescript": "^2.3.3",
     "webpack": "^2.6.0",

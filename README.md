@@ -2,6 +2,8 @@
 
 > game development toolkit
 
+A collection of common components which are widely used in game development.
+
 # Table of contents
 - [Installation](#installation)
 - [Usage](#usage)

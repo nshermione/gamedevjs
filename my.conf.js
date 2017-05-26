@@ -1,31 +1,15 @@
 module.exports = function (config) {
   config.set({
-    basePath: '',
-    frameworks: ['jasmine'],
+    frameworks: ["jasmine", "karma-typescript"],
     files: [
-      'test/**.spec.ts'
+      { pattern: "src/*.ts" }, // *.tsx for React Jsx
+      { pattern: "test/*.ts" }, // *.tsx for React Jsx
     ],
     preprocessors: {
-      'test/**.spec.ts': ['webpack', 'sourcemap'],
+      "src/*.ts": ["karma-typescript"],
+      "test/*.ts": ["karma-typescript"], // *.tsx for React Jsx
     },
-    webpack: {
-      resolve: {
-        extensions: ['.js', '.ts']
-      },
-      module: {
-        loaders: [
-          {test: /\.ts/, loader: 'ts-loader'}
-        ]
-      },
-      devtool: 'source-map',
-    },
-    reporters: ['progress'],
-    port: 9876,
-    colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false,
-    concurrency: Infinity
+    reporters: ["progress", "karma-typescript"],
+    browsers: ["PhantomJS"]
   })
-}
+};
