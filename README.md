@@ -2,7 +2,15 @@
 
 > game development toolkit
 
-A collection of common components which are widely used in game development.
+A collection of common components which are widely used in game development:
+- Scheduler
+- Finite State Machine
+- Event Manager
+
+(other components will be published and documented soon)
+
+
+*This project is envolving and need your feedback, please create [Issue](https://github.com/nshermione/gamedevjs/issues)*
 
 # Table of contents
 - [Installation](#installation)
@@ -219,7 +227,7 @@ fsm.events.enterwalk = function() {
 }
 
 fsm.events.aftermove = function() {
-    console.log("before move");
+    console.log("after move");
 }
 
 fsm.events.move();
