@@ -21,10 +21,20 @@ A collection of common components which are widely used in game development.
     + [Event Handler](#event-handler)
     + [Cancel Event Handler](#cancel-event-handler)
     + [Async Event Handler](#async-event-handler)
+  * [Scheduler](#scheduler-1)
+    + [Creation](#creation-2)
+      - [Item List](#item-list)
+      - [Sample Item](#sample-item)
+    + [Combine](#combine)
+  * [Manipulation](#manipulation-2)
+    + [Clear](#clear)
+    + [Get](#get)
+    + [Return](#return)
+    + [Push](#push)
+  * [Events](#events)
 - [License](#license)
 - [Author](#author)
 - [Donation](#donation)
-
 
 
 # Installation
