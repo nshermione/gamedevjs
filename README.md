@@ -164,9 +164,7 @@ console.log(fsm.current); // "walk"
 ```js
 ...
 fsm.pushEvents({
-    events: {
-        die: {from: ["stand", "run", "walk"], to: "dead"}
-    }
+    die: {from: ["stand", "run", "walk"], to: "dead"}
 });
 
 fsm.events.die();
