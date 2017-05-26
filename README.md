@@ -32,9 +32,19 @@ A collection of common components which are widely used in game development.
       - [Return](#return)
       - [Push](#push)
     + [Events](#events)
+  * [Event Manager](#event-manager)
+    + [Creation](#creation-3)
+    + [Manipulation](#manipulation-3)
+      - [Common usage](#common-usage)
+      - [Register Once](#register-once)
+      - [Register Replace](#register-replace)
+      - [Multiple Register](#multiple-register)
+      - [Unregister list](#unregister-list)
+      - [Unregister All](#unregister-all)
 - [License](#license)
 - [Author](#author)
 - [Donation](#donation)
+
 
 
 # Installation
