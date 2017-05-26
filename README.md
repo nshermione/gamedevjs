@@ -244,6 +244,103 @@ setTimeout(function() {
 ```
 <br />
 
+## Scheduler
+
+<br />
+
+### Creation
+
+#### Item List
+
+Predefine a list of items for object pool.
+
+```js
+var gamedev = require("gamedevjs").gamedev;
+
+var pool = gamedev.pool.config([
+    items: [
+        {point: 0}
+    ]
+]);
+```
+
+#### Sample Item
+```js
+...
+
+var pool = gamedev.pool.config([
+    sampleItem: {point: 2}
+    sampleCount: 2
+]);
+```
+
+### Combine
+
+Predefined items are added to the pool first, then sample items will be added later.
+
+```js
+var gamedev = require("gamedevjs").gamedev;
+
+var pool = gamedev.pool.config([
+    items: [
+        {point: 0}
+    ],
+    sampleItem: {point: 2}
+    sampleCount: 2
+]);
+```
+
+## Manipulation
+
+### Clear
+Clear all items
+```js
+...
+pool.clear();
+```
+
+### Get
+```js
+...
+pool.clear();
+
+// pool is empty now so it will clone sampleItem
+// if sampleItem is undefined, item2 is undefined as well
+item2 = pool.getItem();
+```
+
+### Return
+
+```js
+...
+// return item to the pool and trigger onreturn event
+pool.returnItem(item);
+```
+
+### Push
+
+```js
+...
+// push item to the pool and trigger onpush event
+pool.pushItem(item);
+```
+
+## Events
+
+- onpush: trigger when item is pushed to pool (init pool or push new items to pool)
+- onget: trigger when item is retrieved from pool (get available item)
+- onreturn: trigger when item is returned to pool (return item to pool)
+
+
+
+```js
+pool = gamedev.pool.config({
+    onreturn: function(item) { console.log("return item"); },
+    onget: function(item) { console.log("get item"); },
+    onpush: function(item) { console.log("push item"); },
+    sampleItem: {point: 0}
+});
+```
 
 # License
 

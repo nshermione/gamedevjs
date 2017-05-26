@@ -19,7 +19,9 @@ export class Pool {
   }
 
   private cloneItem(sample: PoolItem) {
-    return {...sample};
+    if (sample) {
+      return {...sample};
+    }
   }
 
   public getItem(): PoolItem {
