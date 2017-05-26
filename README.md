@@ -21,17 +21,17 @@ A collection of common components which are widely used in game development.
     + [Event Handler](#event-handler)
     + [Cancel Event Handler](#cancel-event-handler)
     + [Async Event Handler](#async-event-handler)
-  * [Scheduler](#scheduler-1)
+  * [Object Pool](#object-pool)
     + [Creation](#creation-2)
       - [Item List](#item-list)
       - [Sample Item](#sample-item)
     + [Combine](#combine)
-  * [Manipulation](#manipulation-2)
-    + [Clear](#clear)
-    + [Get](#get)
-    + [Return](#return)
-    + [Push](#push)
-  * [Events](#events)
+    + [Manipulation](#manipulation-2)
+      - [Clear](#clear)
+      - [Get](#get)
+      - [Return](#return)
+      - [Push](#push)
+    + [Events](#events)
 - [License](#license)
 - [Author](#author)
 - [Donation](#donation)
@@ -254,7 +254,7 @@ setTimeout(function() {
 ```
 <br />
 
-## Scheduler
+## Object Pool
 
 <br />
 
@@ -300,16 +300,16 @@ var pool = gamedev.pool.config([
 ]);
 ```
 
-## Manipulation
+### Manipulation
 
-### Clear
+#### Clear
 Clear all items
 ```js
 ...
 pool.clear();
 ```
 
-### Get
+#### Get
 ```js
 ...
 pool.clear();
@@ -319,7 +319,7 @@ pool.clear();
 item2 = pool.getItem();
 ```
 
-### Return
+#### Return
 
 ```js
 ...
@@ -327,7 +327,7 @@ item2 = pool.getItem();
 pool.returnItem(item);
 ```
 
-### Push
+#### Push
 
 ```js
 ...
@@ -335,7 +335,7 @@ pool.returnItem(item);
 pool.pushItem(item);
 ```
 
-## Events
+### Events
 
 - onpush: trigger when item is pushed to pool (init pool or push new items to pool)
 - onget: trigger when item is retrieved from pool (get available item)
@@ -351,6 +351,111 @@ pool = gamedev.pool.config({
     sampleItem: {point: 0}
 });
 ```
+
+## Event Manager
+
+### Creation
+```js
+var gamedev = require("gamedevjs").gamedev;
+var EventManager = require("gamedevjs").EventManager;
+
+// global event manager
+var event = gamedev.event;
+
+// or create new instance
+var event = new EventManager();
+
+```
+
+<br />
+
+### Manipulation
+
+#### Common usage
+```js
+...
+let isHit = false;
+let heath = 1200;
+
+gamedev.event.register("hit", (data) => {
+  isHit = true;
+  heath -= data.damage;
+});
+
+gamedev.event.emit("hit", {damage: 500});
+console.log(heath); // 700
+
+gamedev.event.unregister("hit");
+
+gamedev.event.emit("hit", {damage: 500});
+console.log(heath); // 700
+
+```
+
+#### Register Once
+```js
+let isHit = false;
+let heath = 1200;
+
+gamedev.event.registerOnce("hit", (data) => {
+  isHit = true;
+  heath -= data.damage;
+});
+
+gamedev.event.emit("hit", {damage: 500});
+console.log(heath); // 700
+gamedev.event.emit("hit", {damage: 500});
+console.log(heath); // 700
+```
+
+#### Register Replace
+```js
+let isHit = false;
+let heath = 1200;
+
+gamedev.event.register("hit", (data) => {
+  isHit = true;
+  heath -= data.damage;
+});
+
+gamedev.event.register("hit", (data) => {
+  isHit = true;
+  heath -= data.damage * 2;
+}, true); // set third parameter to true
+
+gamedev.event.emit("hit", {damage: 500});
+console.log(heath); // 200
+```
+
+#### Multiple Register
+```js
+let isHit = false;
+let heath = 1200;
+
+gamedev.event.register("hit", (data) => {
+  isHit = true;
+  heath -= data.damage;
+});
+gamedev.event.register("hit", (data) => {
+  isHit = true;
+  heath -= 200;
+});
+
+gamedev.event.emit("hit", {damage: 500});
+console.log(heath); // 500
+```
+
+#### Unregister list
+```js
+gamedev.event.unregisterList(["hit", "death"]);
+```
+
+#### Unregister All
+```js
+gamedev.event.unregisterAll();
+```
+
+<br />
 
 # License
 
