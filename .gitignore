@@ -1,5 +1,6 @@
 /.idea/
-/dist/
+/dist/src/
+/dist/test/
 /node_modules/
 
 /build/

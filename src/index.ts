@@ -20,6 +20,16 @@ export class GameDev {
 
 const gamedev = new GameDev();
 
+const gamedevjs = {
+  gamedev: gamedev,
+  EventStatus: EventStatus,
+  EventManager: EventManager
+};
+
+if (window) {
+  (<any>window).gamedevjs = gamedevjs;
+}
+
 export {
   gamedev,
   EventStatus,

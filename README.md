@@ -64,6 +64,23 @@ $ npm install --save gamedevjs
 
 # Usage
 
+```js
+// Node
+var gamedev = require("gamedevjs").gamedev;
+```
+
+```js
+// ES6
+import {gamedev} from "gamedevjs";
+```
+
+```html
+// Browser
+<script>
+  var gamedev = window.gamedevjs.gamedev;
+</script>
+```
+
 ## Scheduler
 
 <br />
@@ -75,8 +92,6 @@ $ npm install --save gamedevjs
 
 #### Schedule tasks at specific times
 ```js
-var gamedev = require("gamedevjs").gamedev;
-
 var scheduler = gamedev.scheduler.config([
     {at: 200, run: function() {console.log("Hello 200ms")} },
     {at: 1300, run: function() {console.log("Hello 1300ms")} },
@@ -90,7 +105,6 @@ scheduler.start();
 
 #### Schedule sequence tasks
 ```js
-var gamedev = require("gamedevjs").gamedev;
 
 var scheduler = gamedev.scheduler.sequence([
     {duration: 1100, run: function() {console.log("Hello 200ms")} },
@@ -169,8 +183,6 @@ Inspired by [javascript-state-machine](https://github.com/jakesgordon/javascript
 NOTICE: event name must NOT be "any"
 
 ```js
-var gamedev = require("gamedevjs").gamedev;
-
 var fsm = gamedev.fsm.config({
     initial: "stand",
     events: {
@@ -308,7 +320,6 @@ var pool = gamedev.pool.config({
 Predefined items are added to the pool first, then sample items will be added later.
 
 ```js
-var gamedev = require("gamedevjs").gamedev;
 
 var pool = gamedev.pool.config({
     items: [
