@@ -64,18 +64,23 @@ $ npm install --save gamedevjs
 
 # Usage
 
+**Node**
 ```js
-// Node
 var gamedev = require("gamedevjs").gamedev;
 ```
 
+**ES6**
 ```js
 // ES6
 import {gamedev} from "gamedevjs";
 ```
 
+
+**Browser**
+CDN: https://cdn.jsdelivr.net/npm/gamedevjs
 ```html
-// Browser
+<script src="https://cdn.jsdelivr.net/npm/gamedevjs"></script>
+
 <script>
   var gamedev = window.gamedevjs.gamedev;
 </script>
