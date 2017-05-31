@@ -242,11 +242,18 @@ fsm.events.leavestand = function() {
 
 fsm.events.enterwalk = function() {
     console.log("enter walk");
+    console.log(fsm.previous); // previous state
+    console.log(fsm.current); // current state
 }
 
 fsm.events.aftermove = function() {
     console.log("after move");
 }
+
+// or use registerEvent to pass this object
+fsm.registerEvent("beforemove", function() {
+    console.log("before move with registerEvent");
+}, thisObject);
 
 fsm.events.move();
 ```

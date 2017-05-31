@@ -101,7 +101,7 @@ var EventManager = (function () {
             return;
         for (var _a = 0, events_1 = events; _a < events_1.length; _a++) {
             var event_1 = events_1[_a];
-            event_1.apply(event_1, data);
+            event_1.apply(null, data);
             if (this.onceList.indexOf(name) >= 0) {
                 this.unregister(name);
             }
@@ -169,13 +169,19 @@ var FiniteStateMachine = (function () {
     function FiniteStateMachine() {
         this.events = {};
         this.current = "";
+        this.previous = "";
     }
     FiniteStateMachine.prototype.setInitState = function (initState) {
         this.current = initState;
+        this.previous = initState;
+    };
+    FiniteStateMachine.prototype.registerEvent = function (name, callback, self) {
+        this.events[name] = callback;
+        this.events[name + "_self"] = self;
     };
     FiniteStateMachine.prototype.runEvent = function (prefix, name, done) {
         if (this.events["" + prefix + name] && this.events["" + prefix + name].call) {
-            return this.events["" + prefix + name](done);
+            return this.events["" + prefix + name].call(this.events["" + prefix + name + "_self"], done);
         }
     };
     FiniteStateMachine.prototype.processEvent = function (steps) {
@@ -218,7 +224,11 @@ var FiniteStateMachine = (function () {
                             function (done) { return _this.runEvent("before", name_1, done); },
                             function (done) { return _this.runEvent("leave", _this.current, done); },
                             function (done) { return _this.runEvent("leave", "any", done); },
-                            function (done) { _this.current = event_1.to; done(); },
+                            function (done) {
+                                _this.previous = _this.current;
+                                _this.current = event_1.to;
+                                done();
+                            },
                             function (done) { return _this.runEvent("enter", "any", done); },
                             function (done) { return _this.runEvent("enter", _this.current, done); },
                             function (done) { return _this.runEvent("after", name_1, done); },

@@ -1,14 +1,15 @@
 {
   "name": "gamedevjs",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "description": "",
   "types": "dist/src/index.d.ts",
   "main": "dist/gamedev.js",
   "scripts": {
     "localtest": "karma start my.conf.js",
     "test": "karma start my.conf.js --single-run --browsers PhantomJS",
-    "prepublish": "npm run build",
-    "build": "./node_modules/.bin/webpack --config ./config/webpack.config.js && ./node_modules/.bin/webpack --config ./config/webpack.lib.js"
+    "prepublish": "npm run build && npm run buildmin",
+    "build": "./node_modules/.bin/webpack --config ./config/webpack.config.js",
+    "buildmin": "./node_modules/.bin/webpack --config ./config/webpack.lib.js"
   },
   "keywords": [
     "gamedev",

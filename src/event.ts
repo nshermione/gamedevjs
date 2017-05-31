@@ -12,7 +12,7 @@ export class EventManager {
     if (!events) return;
 
     for (let event of events) {
-      event.apply(event, data);
+      event.apply(null, data);
       if (this.onceList.indexOf(name) >= 0) {
         this.unregister(name);
       }

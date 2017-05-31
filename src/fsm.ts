@@ -20,6 +20,7 @@ export interface IStateOption {
 export class FiniteStateMachine {
   events: any = {};
   current: any = "";
+  previous: any = "";
 
   constructor() {
 
@@ -27,11 +28,17 @@ export class FiniteStateMachine {
 
   public setInitState(initState) {
     this.current = initState;
+    this.previous = initState;
+  }
+
+  public registerEvent(name, callback, self) {
+    this.events[name] =  callback;
+    this.events[name + "_self"] = self;
   }
 
   private runEvent(prefix, name, done) {
     if (this.events[`${prefix}${name}`] && this.events[`${prefix}${name}`].call) {
-      return this.events[`${prefix}${name}`](done);
+      return this.events[`${prefix}${name}`].call(this.events[`${prefix}${name}_self`], done);
     }
   }
 
@@ -75,7 +82,11 @@ export class FiniteStateMachine {
               (done)=>{return this.runEvent("before", name, done)},
               (done)=>{return this.runEvent("leave", this.current, done)},
               (done)=>{return this.runEvent("leave", "any", done)},
-              (done)=>{this.current = event.to; done();},
+              (done)=>{
+                this.previous = this.current;
+                this.current = event.to;
+                done();
+              },
               (done)=>{return this.runEvent("enter", "any", done)},
               (done)=>{return this.runEvent("enter", this.current, done)},
               (done)=>{return this.runEvent("after", name, done)},
