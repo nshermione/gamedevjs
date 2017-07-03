@@ -48,6 +48,7 @@ export class EventManager {
     let events = this.events[name];
     if (events) {
       for (let i = 0; i < events.length; i++) {
+        let event = events[i]
         if (event === callback) {
           events.splice(i, 1);
           break;

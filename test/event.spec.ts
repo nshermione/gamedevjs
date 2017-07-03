@@ -125,6 +125,21 @@ describe("event manager", function () {
   });
 
   it("unregisterCallback", function () {
+    let isHit = false;
+    let damage = 0;
 
+    let hitCB = (data) => {
+      isHit = true;
+      damage = data.damage;
+    };
+
+    gamedev.event.register("hit", hitCB);
+
+    gamedev.event.unregisterCallback("hit", hitCB);
+
+    gamedev.event.emit("hit", {damage: 500});
+
+    expect(isHit).toBe(false);
+    expect(damage).toBe(0);
   });
 });
